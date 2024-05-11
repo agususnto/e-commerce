@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 List<Widget> pages = const [
-  Cart(),
+  CartPage(cartItems: []),
   Discovery(),
   Home(),
   Order(),

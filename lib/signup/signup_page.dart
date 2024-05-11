@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Background(
-      color: Colors.red,
+      color: Colors.white,
       child: SingleChildScrollView(
         child: Responsive(
           mobile: MobileSignupScreen(),

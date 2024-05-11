@@ -12,7 +12,7 @@ class SignUpForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SignUpFormState createState() => _SignUpFormState();
+  createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
@@ -31,21 +31,26 @@ class _SignUpFormState extends State<SignUpForm> {
     return Form(
       child: Column(
         children: [
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.next,
-            cursorColor: kPrimaryColor,
-            onSaved: (email) {},
-            decoration: const InputDecoration(
-              hintText: "Your email",
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Icon(Icons.person),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                vertical: defaultPadding / 2), // Menambahkan padding ke bawah
+            child: TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              cursorColor: kPrimaryColor,
+              onSaved: (email) {},
+              decoration: const InputDecoration(
+                hintText: "Your email",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.person),
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            padding: const EdgeInsets.symmetric(
+                vertical: defaultPadding / 2), // Menambahkan padding ke bawah
             child: TextFormField(
               textInputAction: TextInputAction.next,
               obscureText: true,
@@ -60,7 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
             child: TextFormField(
               textInputAction: TextInputAction.next,
               obscureText: true,
@@ -75,7 +80,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
             child: TextFormField(
               textInputAction: TextInputAction.next,
               cursorColor: kPrimaryColor,
@@ -89,7 +94,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
             child: TextFormField(
               readOnly: true, // Membuat input field hanya bisa dibaca
               controller: TextEditingController(
@@ -123,7 +128,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
             child: TextFormField(
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.done,

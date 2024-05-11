@@ -60,7 +60,7 @@ class LoginForm extends StatelessWidget {
               "Login".toUpperCase(),
             ),
           ),
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: defaultPadding / 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -80,7 +80,7 @@ class LoginForm extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: defaultPadding / 2),
           AlreadyHaveAnAccountCheck(
             press: () {
               Navigator.push(

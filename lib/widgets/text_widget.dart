@@ -17,8 +17,9 @@ class _TextViewState extends State<TextView> {
   @override
   Widget build(BuildContext context) {
     return Text(
-        widget.text,
-        style: TextStyle(fontFamily: 'squad', color: widget.colors ?? Colors.black),
-      );
+      widget.text,
+      style:
+          TextStyle(fontFamily: 'squad', color: widget.colors ?? Colors.black),
+    );
   }
 }

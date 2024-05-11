@@ -11,7 +11,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Background(
-      color: Colors.red,
+      color: Color.fromARGB(255, 253, 252, 252),
       child: SingleChildScrollView(
         child: SafeArea(
           child: Responsive(

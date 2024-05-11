@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../constants.dart';
+// import '../../../constants.dart';
 
 class WelcomeImage extends StatelessWidget {
   const WelcomeImage({
@@ -16,20 +16,20 @@ class WelcomeImage extends StatelessWidget {
           "WELCOME TO CHANDRA",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: defaultPadding * 2),
+        // const SizedBox(height: defaultPadding * 2),
         Row(
           children: [
             const Spacer(),
             Expanded(
               flex: 8,
               child: SvgPicture.asset(
-                "assets/icons/chat.svg",
+                "assets/icons/welcome_cats.svg",
               ),
             ),
             const Spacer(),
           ],
         ),
-        const SizedBox(height: defaultPadding * 2),
+        // const SizedBox(height: defaultPadding * 2),
       ],
     );
   }
