@@ -7,7 +7,7 @@ class Product {
   final String size;
   final String stock;
   final double rating, priceIDR;
-  final bool isFavourite, isPopular;
+  final bool isFavourite, isPopular, isRecomended;
 
   Product({
     required this.id,
@@ -15,6 +15,7 @@ class Product {
     this.rating = 0.0,
     this.isFavourite = false,
     required this.isPopular,
+    required this.isRecomended,
     required this.title,
     required this.priceIDR,
     required this.description,
@@ -54,6 +55,7 @@ class Product {
       rating: json['rating'],
       isFavourite: json['isFavourite'],
       isPopular: json['isPopular'],
+      isRecomended: json['isRecomended'] ?? false,
     );
   }
 }
@@ -76,27 +78,28 @@ List<Product> demoProducts = [
     category: "Beras",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
-    id: 2,
-    images: [
-      "assets/images/beras2.png",
-    ],
-    // stocks: [
-    //   const stock(0xFFF6625E),
-    //   const stock(0xFF836DB8),
-    //   const stock(0xFFDECB9C),
-    //   stocks.20,
-    // ],
-    title: "Beras Pulen",
-    priceIDR: 80000,
-    description: "Deskripsi produk Nike Sport 20 - Man Pant",
-    rating: 4.1,
-    size: "Medium",
-    stock: "20",
-    category: "Beras",
-    isPopular: false,
-  ),
+      id: 2,
+      images: [
+        "assets/images/beras2.png",
+      ],
+      // stocks: [
+      //   const stock(0xFFF6625E),
+      //   const stock(0xFF836DB8),
+      //   const stock(0xFFDECB9C),
+      //   stocks.20,
+      // ],
+      title: "Beras Pulen",
+      priceIDR: 80000,
+      description: "Deskripsi produk Nike Sport 20 - Man Pant",
+      rating: 4.1,
+      size: "Medium",
+      stock: "20",
+      category: "Beras",
+      isPopular: false,
+      isRecomended: true),
   Product(
     id: 3,
     images: [
@@ -117,6 +120,7 @@ List<Product> demoProducts = [
     category: "Telur",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
     id: 4,
@@ -138,6 +142,7 @@ List<Product> demoProducts = [
     category: "Beras",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
     id: 5,
@@ -154,6 +159,7 @@ List<Product> demoProducts = [
     stock: "20",
     category: "Beras",
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
     id: 6,
@@ -178,6 +184,7 @@ List<Product> demoProducts = [
     category: "Minyak",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
     id: 7,
@@ -198,6 +205,7 @@ List<Product> demoProducts = [
     stock: "20",
     category: "Telur",
     isPopular: false,
+    isRecomended: true,
   ),
   Product(
     id: 8,
@@ -219,6 +227,7 @@ List<Product> demoProducts = [
     category: "Gula",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
     id: 9,
@@ -240,6 +249,7 @@ List<Product> demoProducts = [
     category: "Minyak",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
     id: 10,
@@ -261,6 +271,7 @@ List<Product> demoProducts = [
     category: "Minyak",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
     id: 11,
@@ -285,9 +296,10 @@ List<Product> demoProducts = [
     category: "Susu",
     // isFavourite: true,
     isPopular: false,
+    isRecomended: true,
   ),
   Product(
-    id: 11,
+    id: 12,
     images: [
       "assets/images/ps4_console_white_1.png",
       "assets/images/ps4_console_white_2.png",
@@ -303,9 +315,10 @@ List<Product> demoProducts = [
     category: "Susu",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
-    id: 11,
+    id: 13,
     images: [
       "assets/images/ps4_console_white_1.png",
       "assets/images/ps4_console_white_2.png",
@@ -321,9 +334,10 @@ List<Product> demoProducts = [
     category: "Susu",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
-    id: 11,
+    id: 14,
     images: [
       "assets/images/ps4_console_white_1.png",
       "assets/images/ps4_console_white_2.png",
@@ -339,9 +353,10 @@ List<Product> demoProducts = [
     category: "Susu",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
-    id: 12,
+    id: 15,
     images: [
       "assets/images/ps4_console_white_2.png",
     ],
@@ -359,9 +374,10 @@ List<Product> demoProducts = [
     stock: "20",
     category: "Susu",
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
-    id: 13,
+    id: 16,
     images: [
       "assets/images/ps4_console_white_1.png",
     ],
@@ -380,9 +396,10 @@ List<Product> demoProducts = [
     category: "Susu",
     // isFavourite: true,
     isPopular: true,
+    isRecomended: false,
   ),
   Product(
-    id: 14,
+    id: 17,
     images: [
       "assets/images/glap.png",
     ],
@@ -401,9 +418,10 @@ List<Product> demoProducts = [
     category: "Susu",
     // isFavourite: true,
     isPopular: false,
+    isRecomended: true,
   ),
   Product(
-    id: 15,
+    id: 18,
     images: [
       "assets/images/glap.png",
     ],
@@ -416,6 +434,7 @@ List<Product> demoProducts = [
     category: "Susu",
     // isFavourite: true,
     isPopular: false,
+    isRecomended: true,
   ),
 ];
 

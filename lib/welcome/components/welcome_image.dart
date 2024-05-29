@@ -23,7 +23,7 @@ class WelcomeImage extends StatelessWidget {
             Expanded(
               flex: 8,
               child: SvgPicture.asset(
-                "assets/icons/welcome_cats.svg",
+                "assets/icons/Login-panaa.svg",
               ),
             ),
             const Spacer(),

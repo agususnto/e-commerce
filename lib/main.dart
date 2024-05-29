@@ -100,10 +100,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-List<Widget> pages = const [
-  CartPage(cartItems: []),
-  Discovery(),
-  Home(),
-  Order(),
-  Profile(),
+List<Widget> pages = [
+  const CartPage(cartItems: []),
+  const Discovery(),
+  const Home(),
+  const Order(),
+  const Profile(),
 ];
