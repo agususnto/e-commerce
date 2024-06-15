@@ -19,13 +19,13 @@ class PopularProducts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
-            title: "Popular Products",
+            title: "Produk Populer",
             press: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProductsScreen(
-                    category: "Popular",
+                    category: "Produk Populer",
                     products: demoProducts
                         .where((product) => product.isPopular)
                         .toList(),

@@ -19,13 +19,13 @@ class RecommendedProducts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
-            title: "Recommended Products",
+            title: "Produk Rekomendasi",
             press: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProductsScreen(
-                    category: "recomended",
+                    category: "Produk Rekomendasi",
                     products: demoProducts
                         .where((product) => product.isRecomended)
                         .toList(),

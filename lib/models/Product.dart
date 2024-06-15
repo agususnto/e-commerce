@@ -113,7 +113,8 @@ List<Product> demoProducts = [
     // ],
     title: "Telur",
     priceIDR: 70000,
-    description: "Deskripsi produk Gloves XC Omega - Polygon",
+    description:
+        "Deskripsi produk Gloves XC Omega - Polygon Deskripsi produk Gloves XC Omega - Polygon",
     rating: 4.1,
     size: "Medium",
     stock: "20",

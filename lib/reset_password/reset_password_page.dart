@@ -1,4 +1,3 @@
-// reset_password_page.dart
 import 'package:flutter/material.dart';
 import 'package:ecommerce/responsive.dart';
 import '../../components/background.dart';
@@ -10,28 +9,31 @@ class ResetPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Background(
-      color: Colors.white,
-      child: SingleChildScrollView(
-        child: Responsive(
-          mobile: MobileResetPasswordScreen(),
-          desktop: Row(
-            children: [
-              Expanded(
-                child: ResetPasswordScreenTopImage(),
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 450,
-                      child: ResetPasswordForm(),
-                    ),
-                  ],
+    return const Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: Background(
+        color: Colors.white,
+        child: SingleChildScrollView(
+          child: Responsive(
+            mobile: MobileResetPasswordScreen(),
+            desktop: Row(
+              children: [
+                Expanded(
+                  child: ResetPasswordScreenTopImage(),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 450,
+                        child: ResetPasswordForm(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -44,21 +46,25 @@ class MobileResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        ResetPasswordScreenTopImage(),
-        Row(
-          children: [
-            Spacer(),
-            Expanded(
-              flex: 8,
-              child: ResetPasswordForm(),
+    return const SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ResetPasswordScreenTopImage(),
+            Row(
+              children: [
+                Spacer(),
+                Expanded(
+                  flex: 8,
+                  child: ResetPasswordForm(),
+                ),
+                Spacer(),
+              ],
             ),
-            Spacer(),
           ],
         ),
-      ],
+      ),
     );
   }
 }

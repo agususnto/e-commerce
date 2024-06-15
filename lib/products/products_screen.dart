@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ecommerce/components/product_card.dart';
 import 'package:ecommerce/models/Product.dart';
 import '../details/detail_screen.dart';
 import 'package:shimmer/shimmer.dart';
-// import 'package:delayed_display/delayed_display.dart';
+import '../cart/cart.dart';
 
 class ProductsScreen extends StatefulWidget {
   final String category;
@@ -90,7 +91,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 controller: searchController,
                 onChanged: filterSearchResults,
                 decoration: const InputDecoration(
-                  labelText: "Search products",
+                  hintText: "Search products",
                   prefixIcon: Icon(Icons.search),
                   // border: OutlineInputBorder(),
                 ),
@@ -114,6 +115,21 @@ class _ProductsScreenState extends State<ProductsScreen> {
               });
             },
           ),
+          IconButton(
+            onPressed: () {
+              // Navigasi ke halaman keranjang di sini
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CartPage(
+                    cartItems: [],
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.shopping_cart_checkout),
+            // color: Colors.red,
+          ),
         ],
       ),
       body: SafeArea(
@@ -132,35 +148,40 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 20,
                     ),
-                    // itemBuilder: (context, index) => const DelayedDisplay(
-                    //   delay: Duration(milliseconds: 200),
-                    //   child: ProductCardShimmer(),
-                    // ),
                     itemBuilder: (context, index) => const ProductCardShimmer(),
                   ),
                 )
-              : GridView.builder(
-                  itemCount: filteredProducts.length,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 0.7,
-                    // mainAxisSpacing: 20,
-                    crossAxisSpacing: 16,
-                  ),
-                  itemBuilder: (context, index) => ProductCard(
-                    product: filteredProducts[index],
-                    onPress: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailsScreen(
-                            product: filteredProducts[index],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+              : filteredProducts.isEmpty
+                  ? Center(
+                      child: SvgPicture.asset(
+                        'assets/icons/camera-svgrepo-com.svg', // Ubah dengan path gambar SVG Anda
+                        width: 200,
+                        height: 200,
+                        // color: Colors.grey, // Sesuaikan warna gambar SVG
+                      ),
+                    )
+                  : GridView.builder(
+                      itemCount: filteredProducts.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        childAspectRatio: 0.7,
+                        crossAxisSpacing: 16,
+                      ),
+                      itemBuilder: (context, index) => ProductCard(
+                        product: filteredProducts[index],
+                        onPress: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsScreen(
+                                product: filteredProducts[index],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
         ),
       ),
     );
@@ -168,7 +189,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
 }
 
 class ProductCardShimmer extends StatelessWidget {
-  const ProductCardShimmer({super.key});
+  const ProductCardShimmer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -10,30 +10,33 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Background(
-      color: Colors.white,
-      child: SingleChildScrollView(
-        child: Responsive(
-          mobile: MobileSignupScreen(),
-          desktop: Row(
-            children: [
-              Expanded(
-                child: SignUpScreenTopImage(),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 450,
-                      child: SignUpForm(),
-                    ),
-                    SizedBox(height: defaultPadding / 2),
-                    // SocalSignUp
-                  ],
+    return const Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: Background(
+        color: Colors.white,
+        child: SingleChildScrollView(
+          child: Responsive(
+            mobile: MobileSignupScreen(),
+            desktop: Row(
+              children: [
+                Expanded(
+                  child: SignUpScreenTopImage(),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 450,
+                        child: SignUpForm(),
+                      ),
+                      SizedBox(height: defaultPadding / 2),
+                      // SocalSignUp
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -48,22 +51,27 @@ class MobileSignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SignUpScreenTopImage(),
-        Row(
-          children: [
-            Spacer(),
-            Expanded(
-              flex: 8,
-              child: SignUpForm(),
+    return const SafeArea(
+      child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SignUpScreenTopImage(),
+            Row(
+              children: [
+                Spacer(),
+                Expanded(
+                  flex: 8,
+                  child: SignUpForm(),
+                ),
+                Spacer(),
+              ],
             ),
-            Spacer(),
+            // const SocalSignUp
           ],
         ),
-        // const SocalSignUp
-      ],
+      ),
     );
   }
 }

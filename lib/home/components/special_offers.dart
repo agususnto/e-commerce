@@ -57,6 +57,22 @@ class SpecialOffers extends StatelessWidget {
                   );
                 },
               ),
+              SpecialOfferCard(
+                image: "assets/images/retail.png",
+                category: "Susu",
+                numOfBrands: 8,
+                onPress: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProductsScreen(
+                        category: "Susu",
+                        products: [],
+                      ), // Tambahkan parameter category
+                    ),
+                  );
+                },
+              ),
               const SizedBox(width: 20),
             ],
           ),

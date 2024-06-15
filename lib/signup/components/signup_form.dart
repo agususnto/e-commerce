@@ -119,7 +119,7 @@ class _SignUpFormState extends State<SignUpForm> {
               },
               cursorColor: kPrimaryColor,
               decoration: const InputDecoration(
-                hintText: "Date of Birth (DOB)",
+                hintText: "Date of Birth",
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.calendar_today),
@@ -162,6 +162,7 @@ class _SignUpFormState extends State<SignUpForm> {
               );
             },
           ),
+          const SizedBox(height: defaultPadding / 2),
         ],
       ),
     );
