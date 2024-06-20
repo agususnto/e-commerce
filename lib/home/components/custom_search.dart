@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:delayed_display/delayed_display.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../details/detail_screen.dart';
 import '../../models/Product.dart';
@@ -10,29 +11,40 @@ import '../../components/product_card.dart';
 class CustomSearchDelegate extends SearchDelegate {
   final List<Product> products;
   late SharedPreferences prefs;
-  Product? lastViewedProduct;
   List<String> recentTexts = [];
+  List<String> recentProductIds = [];
 
   CustomSearchDelegate({required this.products}) {
-    loadRecentTexts();
+    loadRecentData();
   }
 
-  Future<void> loadRecentTexts() async {
+  Future<void> loadRecentData() async {
     prefs = await SharedPreferences.getInstance();
     recentTexts = prefs.getStringList('recentTexts') ?? [];
+    recentProductIds = prefs.getStringList('recentProductIds') ?? [];
   }
 
-  void saveRecentTexts(String query) {
+  void saveRecentText(String query) {
     if (!recentTexts.contains(query)) {
       recentTexts.insert(0, query);
       prefs.setStringList('recentTexts', recentTexts);
     }
   }
 
+  void saveRecentProductId(String productId) {
+    if (!recentProductIds.contains(productId)) {
+      recentProductIds.insert(0, productId);
+      // Limit recent product IDs to 4 items
+      if (recentProductIds.length > 4) {
+        recentProductIds.removeLast();
+      }
+      prefs.setStringList('recentProductIds', recentProductIds);
+    }
+  }
+
   void removeRecentText(String text) {
     recentTexts.remove(text);
     prefs.setStringList('recentTexts', recentTexts);
-    // showSuggestions(context); // Refresh the UI after removing recent text
   }
 
   @override
@@ -64,6 +76,16 @@ class CustomSearchDelegate extends SearchDelegate {
                 product.title.toLowerCase().contains(query.toLowerCase()))
             .toList();
 
+    if (searchResults.isEmpty) {
+      return Center(
+        child: SvgPicture.asset(
+          'assets/icons/camera-svgrepo-com.svg', // Path to your SVG asset
+          width: 200,
+          height: 200,
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: GridView.builder(
@@ -77,8 +99,8 @@ class CustomSearchDelegate extends SearchDelegate {
         itemBuilder: (context, index) => ProductCard(
           product: searchResults[index],
           onPress: () {
-            lastViewedProduct = searchResults[index];
-            saveRecentTexts(query);
+            saveRecentText(query);
+            saveRecentProductId(searchResults[index].id.toString());
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -100,20 +122,23 @@ class CustomSearchDelegate extends SearchDelegate {
             product.title.toLowerCase().startsWith(query.toLowerCase()))
         .toList();
 
-    List<Product> limitedSuggestions = [];
-    if (lastViewedProduct != null) {
-      limitedSuggestions.add(lastViewedProduct!);
-    }
+    List<Product> recentProducts = recentProductIds
+        .map((id) =>
+            products.firstWhere((product) => product.id.toString() == id))
+        .toList();
 
-    while (limitedSuggestions.length < 4) {
-      final additionalProduct = products.firstWhere(
-          (product) =>
-              !limitedSuggestions.contains(product) &&
-              product != lastViewedProduct,
-          orElse: () => suggestedProducts.isNotEmpty
-              ? suggestedProducts.first
-              : products.first);
-      limitedSuggestions.add(additionalProduct);
+    List<Product> limitedSuggestions = [];
+
+    // Add recent products first
+    limitedSuggestions.addAll(recentProducts);
+
+    // Add suggested products until we have 4 items
+    for (int i = 0; i < suggestedProducts.length; i++) {
+      if (limitedSuggestions.length >= 4) break;
+      final product = suggestedProducts[i];
+      if (!limitedSuggestions.contains(product)) {
+        limitedSuggestions.add(product);
+      }
     }
 
     return Column(
@@ -138,7 +163,6 @@ class CustomSearchDelegate extends SearchDelegate {
             future: Future.delayed(const Duration(seconds: 3)),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                // Jika masih menunggu, tampilkan efek shimmer
                 return Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
@@ -148,7 +172,7 @@ class CustomSearchDelegate extends SearchDelegate {
                               delay: const Duration(milliseconds: 200),
                               child: GestureDetector(
                                 onTap: () {
-                                  lastViewedProduct = product;
+                                  saveRecentProductId(product.id.toString());
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -187,12 +211,11 @@ class CustomSearchDelegate extends SearchDelegate {
                   ),
                 );
               } else {
-                // Jika sudah selesai menunggu, tampilkan produk
                 return Row(
                   children: limitedSuggestions
                       .map((product) => GestureDetector(
                             onTap: () {
-                              lastViewedProduct = product;
+                              saveRecentProductId(product.id.toString());
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

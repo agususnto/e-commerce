@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/text_widget.dart';
 import 'components/profile_menu.dart';
 import 'components/profile_pic.dart';
 import 'page_profile/account.dart';
@@ -20,7 +19,13 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TextView(text: 'Profile'),
+        automaticallyImplyLeading:
+            true, // Menampilkan ikon back secara otomatis
+        title: const Text('Profile',
+            style: TextStyle(color: Colors.white)), // Warna teks putih
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme:
+            const IconThemeData(color: Colors.white), // Warna ikon back putih
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/text_widget.dart';
+// import '../widgets/text_widget.dart';
 
 class Order extends StatelessWidget {
   const Order({super.key});
@@ -9,7 +9,13 @@ class Order extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TextView(text: 'Order'),
+        automaticallyImplyLeading:
+            true, // Menampilkan ikon back secara otomatis
+        title: const Text('Order',
+            style: TextStyle(color: Colors.white)), // Warna teks putih
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme:
+            const IconThemeData(color: Colors.white), // Warna ikon back putih
       ),
       body: Container(),
     );

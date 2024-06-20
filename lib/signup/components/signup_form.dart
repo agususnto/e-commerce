@@ -162,7 +162,7 @@ class _SignUpFormState extends State<SignUpForm> {
               );
             },
           ),
-          const SizedBox(height: defaultPadding / 2),
+          const SizedBox(height: defaultPadding * 1),
         ],
       ),
     );

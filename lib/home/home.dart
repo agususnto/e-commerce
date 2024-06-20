@@ -3,6 +3,7 @@ import 'components/categories.dart';
 import '../models/Product.dart';
 import '../products/products_screen.dart';
 import '../utils/wishlist_local_storage.dart';
+import '../cart/cart.dart';
 import 'components/custom_search.dart';
 import 'components/discount_banner.dart';
 import 'components/special_offers.dart';
@@ -64,6 +65,20 @@ class Home extends StatelessWidget {
               // );
             },
             icon: const Icon(Icons.qr_code_2_sharp),
+          ),
+          IconButton(
+            onPressed: () {
+              // Navigasi ke halaman keranjang
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CartPage(
+                    cartItems: [],
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.shopping_cart_checkout),
           ),
           IconButton(
             onPressed: () async {

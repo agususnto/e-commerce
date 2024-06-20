@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce/products/products_screen.dart';
+import 'package:ecommerce/models/Product.dart';
 // import '../../constants.dart';
 import 'section_title.dart';
 
@@ -17,7 +18,19 @@ class SpecialOffers extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
             title: "Special for you",
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductsScreen(
+                    category: "Produk Special",
+                    products: demoProducts
+                        .where((product) => product.isSpecial)
+                        .toList(),
+                  ),
+                ),
+              );
+            },
           ),
         ),
         // const SizedBox(height: defaultPadding),

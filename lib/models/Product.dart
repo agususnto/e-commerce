@@ -7,15 +7,16 @@ class Product {
   final String size;
   final String stock;
   final double rating, priceIDR;
-  final bool isFavourite, isPopular, isRecomended;
+  final bool isSpecial, isPopular, isRecomended;
 
   Product({
     required this.id,
     required this.images,
     this.rating = 0.0,
-    this.isFavourite = false,
+    // this.isSpecial = false,
     required this.isPopular,
     required this.isRecomended,
+    required this.isSpecial,
     required this.title,
     required this.priceIDR,
     required this.description,
@@ -36,8 +37,9 @@ class Product {
       'category': category,
       'images': images,
       'rating': rating,
-      'isFavourite': isFavourite,
+      'isFavourite': isSpecial,
       'isPopular': isPopular,
+      'isRecomended': isRecomended,
     };
   }
 
@@ -53,7 +55,7 @@ class Product {
       category: json['category'],
       images: List<String>.from(json['images']),
       rating: json['rating'],
-      isFavourite: json['isFavourite'],
+      isSpecial: json['isSpecial'] ?? false,
       isPopular: json['isPopular'],
       isRecomended: json['isRecomended'] ?? false,
     );
@@ -64,22 +66,21 @@ class Product {
 
 List<Product> demoProducts = [
   Product(
-    id: 1,
-    images: [
-      "assets/images/beras.png",
-    ],
-    title: "Beras",
-    priceIDR: 80000,
-    description:
-        "Beras super dengan harga yang terjangkau Beras super dengan harga yang terjangkau Beras super dengan harga yang terjangkau Beras super dengan harga yang terjangkau sekali",
-    rating: 4.1,
-    size: "Medium",
-    stock: "20",
-    category: "Beras",
-    // isFavourite: true,
-    isPopular: true,
-    isRecomended: false,
-  ),
+      id: 1,
+      images: [
+        "assets/images/beras.png",
+      ],
+      title: "Beras",
+      priceIDR: 80000,
+      description:
+          "Beras super dengan harga yang terjangkau Beras super dengan harga yang terjangkau Beras super dengan harga yang terjangkau Beras super dengan harga yang terjangkau sekali",
+      rating: 4.1,
+      size: "Medium",
+      stock: "20",
+      category: "Beras",
+      isPopular: true,
+      isRecomended: true,
+      isSpecial: false),
   Product(
       id: 2,
       images: [
@@ -98,31 +99,32 @@ List<Product> demoProducts = [
       size: "Medium",
       stock: "20",
       category: "Beras",
+      isSpecial: true,
       isPopular: false,
       isRecomended: true),
   Product(
-    id: 3,
-    images: [
-      "assets/images/telur.png",
-    ],
-    // stocks: [
-    //   const stock(0xFFF6625E),
-    //   const stock(0xFF836DB8),
-    //   const stock(0xFFDECB9C),
-    //   stocks.20,
-    // ],
-    title: "Telur",
-    priceIDR: 70000,
-    description:
-        "Deskripsi produk Gloves XC Omega - Polygon Deskripsi produk Gloves XC Omega - Polygon",
-    rating: 4.1,
-    size: "Medium",
-    stock: "20",
-    category: "Telur",
-    // isFavourite: true,
-    isPopular: true,
-    isRecomended: false,
-  ),
+      id: 3,
+      images: [
+        "assets/images/telur.png",
+      ],
+      // stocks: [
+      //   const stock(0xFFF6625E),
+      //   const stock(0xFF836DB8),
+      //   const stock(0xFFDECB9C),
+      //   stocks.20,
+      // ],
+      title: "Telur",
+      priceIDR: 70000,
+      description:
+          "Deskripsi produk Gloves XC Omega - Polygon Deskripsi produk Gloves XC Omega - Polygon",
+      rating: 4.1,
+      size: "Medium",
+      stock: "20",
+      category: "Telur",
+      // isFavourite: true,
+      isPopular: true,
+      isRecomended: false,
+      isSpecial: false),
   Product(
     id: 4,
     images: [
@@ -144,6 +146,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 5,
@@ -161,6 +164,7 @@ List<Product> demoProducts = [
     category: "Beras",
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 6,
@@ -186,6 +190,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 7,
@@ -207,6 +212,7 @@ List<Product> demoProducts = [
     category: "Telur",
     isPopular: false,
     isRecomended: true,
+    isSpecial: false,
   ),
   Product(
     id: 8,
@@ -229,6 +235,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 9,
@@ -251,6 +258,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 10,
@@ -273,6 +281,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 11,
@@ -298,6 +307,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: false,
     isRecomended: true,
+    isSpecial: false,
   ),
   Product(
     id: 12,
@@ -317,6 +327,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 13,
@@ -336,6 +347,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 14,
@@ -355,6 +367,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 15,
@@ -376,6 +389,7 @@ List<Product> demoProducts = [
     category: "Susu",
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 16,
@@ -398,6 +412,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: true,
     isRecomended: false,
+    isSpecial: false,
   ),
   Product(
     id: 17,
@@ -420,6 +435,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: false,
     isRecomended: true,
+    isSpecial: false,
   ),
   Product(
     id: 18,
@@ -436,6 +452,7 @@ List<Product> demoProducts = [
     // isFavourite: true,
     isPopular: false,
     isRecomended: true,
+    isSpecial: false,
   ),
 ];
 
